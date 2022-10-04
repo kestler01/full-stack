@@ -81,7 +81,6 @@ app.get("/animes/house", (req, res) => {
 })
 
 app.get("/animes/:id", (req, res) => {
-    // console.log("I hit the update route", req.params.id)
     const id = req.params.id
     Anime.findById(id)
         .then(anime => {
@@ -89,6 +88,15 @@ app.get("/animes/:id", (req, res) => {
             
         })
         .catch(err => console.log(err))
+})
+
+app.delete("/animes/:id", (req, res) => {
+    const id = req.params.id
+    Anime.findByIdAndRemove(id)
+        .then(() => {
+            res.sendStatus(204)
+        })
+        .catch(err => res.json(err))
 })
 
 

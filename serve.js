@@ -68,6 +68,18 @@ app.get("/animes/house", (req, res) => {
       })
   })
 
+  app.put("/animes/:id", (req, res) => {
+    const id = req.params.id
+    
+    Anime.findByIdAndUpdate(id, req.body, { new: true })
+        .then(anime => {
+            console.log('the anime has been update', anime)
+
+            res.sendStatus(204)
+        })
+        .catch(err => console.log(err))
+})
+
 
 const PORT = process.env.PORT
 app.listen(PORT, () => console.log(`Now Listening on port ${PORT}`))

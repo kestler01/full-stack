@@ -80,6 +80,17 @@ app.get("/animes/house", (req, res) => {
         .catch(err => console.log(err))
 })
 
+app.get("/animes/:id", (req, res) => {
+    // console.log("I hit the update route", req.params.id)
+    const id = req.params.id
+    Anime.findById(id)
+        .then(anime => {
+          res.json({anime: anime})
+            
+        })
+        .catch(err => console.log(err))
+})
+
 
 const PORT = process.env.PORT
 app.listen(PORT, () => console.log(`Now Listening on port ${PORT}`))

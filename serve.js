@@ -32,6 +32,26 @@ app.get("/", (req, res) => {
     res.send("Your server is running, better go out and catch it")
 })
 
+app.get("/anime/house", (req, res) => {
+    // array of starter fruits
+    const startAnime = [
+      { name: "Goku", show: "Dragon ball Z", doesHeSolo: true },
+      { name: "Saitima", show: "One punch man", doesHeSolo: true},
+      { name: "hinata", show: "Naruto", doesHeSolo: false },
+    ]
+  
+    // Delete all fruits
+    Anime.deleteMany({}).then((data) => {
+      // Seed Starter Fruits
+      Anime.create(startAnime)
+        .then((data) => {
+        // send created fruits as response to confirm creation
+          res.json(data)
+        })
+    })
+  })
+
+
 const PORT = process.env.PORT
 app.listen(PORT, () => console.log(`Now Listening on port ${PORT}`))
 

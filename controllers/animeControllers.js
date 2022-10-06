@@ -35,32 +35,39 @@ router.post('/', (req, res) => {
 })
 
 
-router.put("/:id", (req, res) => {
-
-    const id = req.params.id
-    
-
-    Anime.findByIdAndUpdate(id, req.body, { new: true })
-        .then(anime => {
-            console.log('the anime from update', anime)
-  
-            res.sendStatus(204)
-        })
-        .catch(err => console.log(err))
+router.put('/:id', (req, res) => {
+	const animeId = req.params.id
+	Anime.findById(animeId)
+    .then(anime => {
+      if (anime.owner == req.session.userId) {
+        return anime.updateOne(req.body)
+      }
+    })
+		.then(anime => {
+			console.log('the updated anime', anime)
+			res.sendStatus(204)
+		})
+		.catch((error) => res.json(error))
 })
 
+// delete route
+router.delete('/:id', (req, res) => {
 
-router.delete("/:id", (req, res) => {
+	const animeId = req.params.id
 
-    const id = req.params.id
-
-    Anime.findByIdAndRemove(id)
- 
-        .then(() => {
-            res.sendStatus(204)
-        })
-
-        .catch(err => res.json(err))
+	Anime.findById(animeId)
+    .then(anime => {
+      if (anime.owner == req.session.userId) {
+        return anime.deleteOne()
+      }
+    })
+		.then(() => {
+			res.sendStatus(204)
+		})
+		.catch((error) => {
+      console.log(error)
+			res.json({ error })
+		})
 })
 
 

@@ -2,6 +2,7 @@
 const mongoose = require('./connection')
 
 const User = require('./user')
+const commentSchema = require('./comment')
 const { Schema, model } = mongoose
 
 
@@ -11,8 +12,9 @@ const animeSchema = new Schema({
     doesHeSolo: Boolean,
     owner:{ 
         type: Schema.Types.ObjectId,
-        ref: 'User'}
-
+        ref: 'User'
+    },
+        comments: [commentSchema]
     }, { timestamps: true })
 
 

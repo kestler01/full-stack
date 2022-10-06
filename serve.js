@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 })
 
 
-app.use('/fruits', AnimeRouter)
+app.use('/animes', AnimeRouter)
 app.use('/users', UserRouter)
 
 

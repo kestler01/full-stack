@@ -17,14 +17,21 @@ router.get("/", (req, res) => {
 })
 
 
-router.post("/", (req, res) => {
 
-    Anime.create(req.body)
-        .then(anime => {
+router.post('/', (req, res) => {
 
-            res.status(201).json({ anime: anime.toObject() })
-        })
-        .catch(error => console.log(error))
+
+  req.body.owner = req.session.userId
+  console.log('this is req.body before adding owner', req.body)
+  Anime.create(req.body)
+    .then((anime) => {
+      console.log('this was returned from create', anime)
+      res.status(201).json({ anime: anime.toObject() })
+    })
+    .catch((err) => {
+      console.log(err)
+      res.json({ err })
+    })
 })
 
 

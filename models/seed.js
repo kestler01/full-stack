@@ -14,7 +14,7 @@ db.on('open', () => {
       
     ]
 
-    Anime.deleteMany({})
+    Anime.deleteMany({ owner: null })
         .then(deletedAnimes => {
             console.log('this is what .deleteMany returns', deletedAnimes)
 

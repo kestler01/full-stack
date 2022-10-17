@@ -1,0 +1,22 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+
+  <div class="container-sm">
+    <form action="/animes" method="POST">
+      <fieldset>
+        <legend>Create New Anime</legend>
+        <label class="form-label">Name:
+        </label>
+        <input class="form-control" type="text" name="name" placeholder="enter the name of the character">
+        <label class="form-label">anime:
+        </label>
+        <input class="form-control" type="text" name="anime" placeholder="what anime is he from">
+        <label class="form-label">Does He Solo:
+        </label>
+        <input class="form-check-input" type="checkbox" name="doesHeSolo">
+      </fieldset>
+      <input class="btn btn-success" type="submit" value="Create New Anime">
+    </form>
+  </div>
+
+{% endblock %}}}}

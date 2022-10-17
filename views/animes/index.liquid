@@ -1,0 +1,40 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  {% if animes.length > 0%}
+    <div>
+      <h2 class="display-6">All Animes</h2>
+      <div class="row">
+        {% for anime in animes %}
+          <div class="card" style="width: 18rem;">
+            <h5 class="card-header">{{anime.name}}
+            </h5>
+            <div class="card-body">
+              <h5 class="card-title">
+                {% if anime.doesHeSolo %}
+                  He Solos
+                {% else %}
+                  His Mid
+                {% endif %}
+              </h5>
+              <p class="card-text">The anime his from is
+                {{anime.anime}}
+                {%- comment -%}
+                  is
+                  {{anime.show}}
+                {%- endcomment -%}
+              </p>
+              <a class="btn btn-info" href="/animes/{{anime.id}}">
+                View
+                {{anime.name}}
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    <div>
+      <h2 class="display-6">No animes yet... time to add some!</h2>
+    </div>
+  {% endif %}
+{% endblock %}}}}}}}}}}}}}

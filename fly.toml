@@ -1,6 +1,6 @@
-# fly.toml file generated for anifull on 2022-10-18T16:58:36-05:00
+# fly.toml file generated for animfull on 2022-10-18T17:16:04-05:00
 
-app = "anifull"
+app = "animfull"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []

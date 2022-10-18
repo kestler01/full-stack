@@ -9,13 +9,19 @@ const mongoose = require("mongoose") // import mongoose
 /////////////////////////////////////////////
 // this is where we will set up our inputs for our database connect function
 const DATABASE_URL = process.env.DATABASE_URL
-// here is our DB config object
+const DEPLOYED_URL = process.env.DEPLOYED_URL
 const CONFIG = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+	useUnifiedTopology: true,
+	useNewUrlParser: true,
 }
-// establish our connection
-mongoose.connect(DATABASE_URL, CONFIG)
+mongoose.connect(DEPLOYED_URL, CONFIG)
+// mongoose.connect(process.env.DATABASE_URL, {
+// 	useUnifiedTopology: true,
+// 	useNewUrlParser: true,
+// })
+
+// save the connection in a variable
+const db = mongoose.connection
 
 // tell mongoose what to do with certain events
 // opens, disconnects, errors

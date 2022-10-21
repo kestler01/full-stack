@@ -61,7 +61,7 @@ router.post("/", (req, res) => {
     // we'll use the mongoose model method `create` to make a new anime
     Anime.create(req.body)
         .then(anime => {
-            const username = req.session.username
+            const username = req.session.username// unused variables 
             const loggedIn = req.session.loggedIn
             const userId = req.session.userId
             // send the user a '201 created' response, along with the new anime

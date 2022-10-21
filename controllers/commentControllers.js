@@ -41,7 +41,7 @@ router.post("/:animeId", (req, res) => {
         //  --> send some kind of error depending on what went wrong
         .catch(err => res.redirect(`/error?error=${err}`))
 })
-
+// no update ?
 // DELETE
 // only the author of the comment can delete it
 router.delete('/delete/:animeId/:commId', (req, res) => {
@@ -59,7 +59,7 @@ router.delete('/delete/:animeId/:commId', (req, res) => {
             // make sure the user is logged in
             if (req.session.loggedIn) {
                 // only let the author of the comment delete it
-                if (theComment.author == req.session.userId) {
+                if (theComment.author == req.session.userId) { // consolidate this block because the errors are the same 
                     // find some way to remove the comment
                     // here's another built in method
                     theComment.remove()
